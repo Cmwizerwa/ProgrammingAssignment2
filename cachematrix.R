@@ -1,19 +1,6 @@
 ## Put comments here that give an overall description of what your
 ## functions do
 
-## Write a short comment describing this function
-
-makeCacheMatrix <- function(x = matrix()) {
-
-}
-
-
-## Write a short comment describing this function
-
-cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
-}
-
 makeCacheMatrix <- function(x = matrix()) {
 +     i <- NULL
 +     set <- function(y) {
@@ -27,6 +14,14 @@ makeCacheMatrix <- function(x = matrix()) {
 +          setinverse = setinverse,
 +          getinverse = getinverse)
 + }
+
+##  The 'makeCacheMatrix' function takes an input matrix and sets up a list of 
+##  functions as follows:
+##    1 (set_init):  This allows the user to reset the value of the initial matrix
+##    2 (get_init):  This returns the value of the initial matrix
+##    3 (set_inv):   This sets the cached inverse of the initial matrix
+##    4 (get_inv):   This returns the cached inverse of the initial matrix.
+
 > cacheSolve <- function(x, ...) {
 +     i <- x$getinverse()
 +     if (!is.null(i)) {
@@ -39,17 +34,14 @@ makeCacheMatrix <- function(x = matrix()) {
 +     i
 +     
 + }
-> A <- matrix(c(1,2,3,4,5,6),3,3,3)
-> A1 <- makeCacheMatrix(A)
-> cacheSolve(A1) 
- Error in solve.default(data, ...) : 
-  Lapack routine dgesv: system is exactly singular: U[3,3] = 0 
-> A <- matrix(c(1,2,3,4,5,6),3,3,3)
-> A <- matrix(c(1,2,3,4,5,6),3,3)
-> B <- matrix(c(1,2,3,4), 2,2)
-> A1 <- matrix(c(1,2,3,4),2,2)
-> A2 <- makeCacheMatrix(A1)
-> cacheSolve (A2)
-     [,1] [,2]
-[1,]   -2  1.5
-[2,]    1 -0.5
+
+cacheSolve <- function(x, ...) {
+        ## Return a matrix that is the inverse of 'x'
+}
+cacheSolve(sp_mtx)     [on first run calculates inverse of matrix]       
+cacheSolve(sp_mtx)     [on second run returns cached value of inverse]   
+sp_mtx$set_init        resets initial matrix                             
+## p_mtx$get_init: it returns initial matrix                            
+## sp_mtx$set_inv: it sets the cached value of the inverse matrix       
+## sp_mtx$get_inv: it returns cached value of the inverse matrix        
+
